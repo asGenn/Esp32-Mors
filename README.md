@@ -2,15 +2,15 @@
 
 ## Giriş
 
-Bu rapor, ESP32 mikrodenetleyicisi kullanılarak yapılan bir IoT uygulamasını açıklamaktadır. Bu uygulama, Firebase Cloud Functions ve Firestore entegrasyonu ile mesaj alıp, bu mesajları LED ışıkları kullanarak Morse kodu ile göstermek üzere tasarlanmıştır. Rapor, uygulamanın çalışma prensibini, kullanılan teknolojileri ve kodların açıklamasını içermektedir.
+Bu rapor, ESP32 mikrodenetleyicisi kullanılarak geliştirilen bir IoT uygulamasının açıklamasını sunmaktadır. Bu uygulama, Firebase Cloud Functions ve Firestore entegrasyonu ile mesaj alıp, bu mesajları LED ışıkları kullanarak Morse alfabesi ile göstermek üzere tasarlanmıştır. Rapor, uygulamanın çalışma prensibini, kullanılan teknolojileri ve kodların açıklamasını içermektedir.
 
 ## Uygulamanın Amacı
 
-Uygulamanın amacı, Firebase'den alınan mesajları ESP32'ye göndermek ve bu mesajları LED'ler aracılığıyla Morse kodu şeklinde görsel olarak iletmektir. Bu sayede uzaktan mesaj alımı ve iletimi sağlanmaktadır.
+Uygulamanın amacı, Firebase'den alınan mesajları ESP32'ye göndermek ve bu mesajları LED'ler aracılığıyla Morse alfabesş kullanarak görsel olarak iletmektir. Bu sayede uzaktan mesaj alımı ve iletimi sağlanmaktadır.
 
 ## Kullanılan Teknolojiler
 
-- **ESP32 Mikrodenetleyicisi**: Wi-Fi ve Bluetooth özellikleri ile IoT projeleri için ideal bir platformdur.
+- **ESP32 Mikrodenetleyicisi**: Wi-Fi ve kodlanabilir arayüz özellikleri ile IoT projeleri için ideal bir platformdur.
 - **Firebase Cloud Functions**: Sunucusuz kod çalıştırma olanağı sağlayarak, Firebase ortamında güvenli ve ölçeklenebilir fonksiyonlar oluşturur.
 - **Firestore**: Google'ın NoSQL veritabanı hizmeti olup, gerçek zamanlı veri senkronizasyonu sağlar.
 - **Arduino IDE**: ESP32 için kullanılan geliştirme ortamıdır.
@@ -18,7 +18,7 @@ Uygulamanın amacı, Firebase'den alınan mesajları ESP32'ye göndermek ve bu m
 ## Donanım Bileşenleri
 
 - **ESP32 Geliştirme Kartı**
-- **LED'ler**: Mesajları Morse kodu ile göstermek için kullanılan ışık kaynakları.
+- **LED'ler**: Mesajları Morse kodu ile göstermek ve mesaj geldiğini görüntülemek için kullanılan ışık kaynakları.
 - **Düğme (BOOT_BTN)**: Mesajları görüntülemek için kullanılan tetikleyici.
 
 ## Yazılım Mimarisi
@@ -91,7 +91,7 @@ void loop() {
   }
 }
 ```
-Düğmeye basıldığında, alınan mesaj Morse kodu ile LED'ler aracılığıyla gösterilir ve ardından mesaj silinir.
+Düğmeye basıldığında, alınan mesaj Morse alfabesi ile LED'ler aracılığıyla gösterilir ve ardından mesaj silinir.
 
  ### Mesaj Getirme ve Silme Fonksiyonları
 ```cpp
