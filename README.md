@@ -3,7 +3,9 @@
 ## Projeyi Yapanlar
 
 Yakuphan IŞIK - 223405096
+
 Abdulsamet GENÇ - 203405028
+
 Yuşa Umut YERLİÇAY - 213405081
 
 ## Giriş
