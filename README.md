@@ -75,3 +75,119 @@ void setup(){
   timer.attach(5, checkFunction); 
 }
 ```
+Bu bölümde, ESP32'nin Wi-Fi ağına bağlanması sağlanır ve bağlantı başarılı olduğunda IP adresi seri monitöre yazdırılır. Ayrıca, periyodik olarak mesaj kontrolü yapmak üzere bir timer başlatılır.
+
+### Mesaj Kontrol ve Morse Kodu İletimi
+```cpp
+bool isThereMessage = false;
+String message = "";
+
+void loop() {
+  if (digitalRead(BOOT_BTN) == LOW && isThereMessage) {
+    delay(50);
+    digitalWrite(LED_2,LOW);
+    morseBlink(message);
+    deleteMessage();
+  }
+}
+```
+Düğmeye basıldığında, alınan mesaj Morse kodu ile LED'ler aracılığıyla gösterilir ve ardından mesaj silinir.
+
+ ### Mesaj Getirme ve Silme Fonksiyonları
+```cpp
+String getMessage() {
+  String response;
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    String url = "https://app-3odszoonka-uc.a.run.app/latest-message";
+    
+    http.begin(url);
+    http.addHeader("Content-Type", "text/plain");
+    int httpCode = http.GET();
+
+    if (httpCode > 0) {
+      if(httpCode==200){
+        response = http.getString();
+        Serial.println("HTTP Response code: " + String(httpCode));
+        Serial.println("Response: " + response);
+        isThereMessage = true;
+        digitalWrite(LED_2,HIGH);
+      }else{
+        Serial.println("Henüz bir mesaj yok.");
+      }
+    } else {
+      Serial.println("Error code: " + http.errorToString(httpCode));
+    }
+    http.end();
+  } else {
+    Serial.println("WiFi Disconnected");
+  }
+  return parseJson(response);
+}
+
+void deleteMessage() {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    String url = "https://app-3odszoonka-uc.a.run.app/delete-message";
+    
+    http.begin(url);
+    http.addHeader("Content-Type", "text/plain");
+    int httpCode = http.GET();
+    if (httpCode > 0 && httpCode == 200) {
+      isThereMessage = false;
+    } else {
+      Serial.println("Error code: " + http.errorToString(httpCode));
+    }
+    http.end();
+  } else {
+    Serial.println("WiFi Disconnected");
+  }
+}
+```
+Bu fonksiyonlar, Firebase'den en son mesajı getirir ve işlem sonrası mesajı siler.
+### JSON Ayrıştırma
+``` cpp
+String parseJson(String input){
+    JSONVar myObject = JSON.parse(input);
+    if (JSON.typeof(myObject) == "undefined") {
+      return "";
+    }
+    if (myObject.hasOwnProperty("text")) {
+      Serial.print("myObject[\"text\"] = ");
+      Serial.println((String)myObject["text"]);
+    }
+    return (String)myObject["text"];
+}
+```
+Bu fonksiyon, gelen JSON verisini ayrıştırarak mesajın metin kısmını döndürür.
+### Morse Kodu Fonksiyonları
+```cpp
+void morseBlink(String text) {
+  for (int i = 0; i < text.length(); i++) {
+    char c = text.charAt(i);
+    switch (c) {
+      // Her karakter için Morse kodu
+      // ...
+    }
+    delay(DOT_DELAY); // Harfler arası boşluk
+  }
+}
+
+void blink(String morse) {
+  for (int i = 0; i < morse.length(); i++) {
+    char signal = morse.charAt(i);
+    if (signal == '.') {
+      digitalWrite(LED_PIN, HIGH);
+      delay(DOT_DELAY);
+    } else if (signal == '-') {
+      digitalWrite(LED_PIN, HIGH);
+      delay(DASH_DELAY);
+    }
+    digitalWrite(LED_PIN, LOW);
+    delay(DOT_DELAY);
+  }
+}
+```
+Bu fonksiyonlar, mesajı Morse koduna çevirir ve LED'ler aracılığıyla sinyaller gönderir.
+## Sonuç
+Bu uygulama, ESP32 ve Firebase entegrasyonu ile uzaktan mesaj iletimi ve görsel sinyalizasyonunu başarılı bir şekilde gerçekleştirmektedir. Wi-Fi bağlantısı ve Firebase Cloud Functions kullanılarak esnek ve ölçeklenebilir bir çözüm sunulmuştur. Geliştirilen sistem, IoT uygulamaları için pratik bir örnek oluşturmaktadır.
