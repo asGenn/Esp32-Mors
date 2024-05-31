@@ -1,4 +1,4 @@
-# ESP32 ile Firebase Cloud Functions ve Firestore Kullanarak Yapılan Uygulama
+# ESP32 ve Bulut Servisler Kullanılarak Geliştirilen IoT Mesajlaşma Uygulaması
 
 ## Giriş
 
