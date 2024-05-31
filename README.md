@@ -1,5 +1,11 @@
 # ESP32 ve Bulut Servisler Kullanılarak Geliştirilen IoT Mesajlaşma Uygulaması
 
+## Projeyi Yapanlar
+
+Yakuphan IŞIK - 223405096
+Abdulsamet GENÇ - 203405028
+Yuşa Umut YERLİÇAY - 213405081
+
 ## Giriş
 
 Bu rapor, ESP32 mikrodenetleyicisi kullanılarak geliştirilen bir IoT uygulamasının açıklamasını sunmaktadır. Bu uygulama, Firebase Cloud Functions ve Firestore entegrasyonu ile mesaj alıp, bu mesajları LED ışıkları kullanarak Morse alfabesi ile göstermek üzere tasarlanmıştır. Rapor, uygulamanın çalışma prensibini, kullanılan teknolojileri ve kodların açıklamasını içermektedir.
