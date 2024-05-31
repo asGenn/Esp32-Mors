@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "646397413235",
+    "project_id": "esp32-mors",
+    "storage_bucket": "esp32-mors.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646397413235:android:32bf3091a659aa3ddb6706",
+        "android_client_info": {
+          "package_name": "com.example.esp32"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnhDIKNmMSpKEDQRIG9HlM5PclOsUaP4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
