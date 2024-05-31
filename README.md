@@ -1,5 +1,6 @@
 # ESP32 ve Bulut Servisler Kullanılarak Geliştirilen IoT Mesajlaşma Uygulaması
 
+
 ## Projeyi Yapanlar
 
 Yakuphan IŞIK - 223405096
@@ -7,6 +8,7 @@ Yakuphan IŞIK - 223405096
 Abdulsamet GENÇ - 203405028
 
 Yuşa Umut YERLİÇAY - 213405081
+
 
 ## Giriş
 
